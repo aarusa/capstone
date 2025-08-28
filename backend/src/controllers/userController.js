@@ -3,7 +3,7 @@ import supabase from "../database/supabaseClient.js";
 export async function getUsers(req, res) {
   try {
     const { data, error } = await supabase
-      .from("user_profiles") //table name
+      .from("users") //table name
       .select("*");
 
     if (error) {
