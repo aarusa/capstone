@@ -1,5 +1,20 @@
-export function getUsers(req, res) {
-    res.status(200).send("You just fetched user list.");
+import supabase from "../database/supabaseClient.js";
+
+export async function getUsers(req, res) {
+  try {
+    const { data, error } = await supabase
+      .from("user_profiles") //table name
+      .select("*");
+
+    if (error) {
+      return res.status(400).json({ error: error.message });
+    }
+
+    return res.status(200).json(data); // send the list of users
+  } catch (err) {
+    console.error("Error fetching users:", err.message);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
 }
 
 export function createUser(req, res) {
