@@ -1,6 +1,7 @@
 import express from "express"
 import cors from "cors";
 import userRoutes from "./routes/userRoutes.js"
+import chatRoutes from "./routes/chatRoutes.js"
 // import rateLimiter from "./middleware/rateLimiter.js";
 
 const app = express()
@@ -24,6 +25,7 @@ app.use(express.json()); // to parse the request body
 // });
 
 app.use("/api/users", userRoutes);
+app.use("/api/chat", chatRoutes);
 
 app.listen(3000, () => {
     console.log("Server started on PORT: 3000");
